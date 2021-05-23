@@ -1,9 +1,7 @@
 package adaguz.movieservice.service;
 
-import adaguz.movieservice.advice.MovieNotFoundAdvice;
 import adaguz.movieservice.advice.MovieNotFoundException;
 import adaguz.movieservice.model.Movie;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -25,6 +23,19 @@ public class MovieService {
 
     public Movie addMovie(Movie movie){
         return movieRepository.save(movie);
+    }
+
+    public Movie updateMovie(Movie movie, Long id){
+        Movie movieToUpdate;
+        movieRepository.findById(id).orElseThrow(MovieNotFoundException::new);
+        movieToUpdate = movie;
+        movieToUpdate.setId(id);
+        return movieRepository.save(movieToUpdate);
+    }
+
+    public void deleteMovie(Long id){
+        Movie movie = movieRepository.findById(id).orElseThrow(MovieNotFoundException::new);
+        movieRepository.delete(movie);
     }
 
 

@@ -1,7 +1,5 @@
 package adaguz.movieservice.controller;
 
-import adaguz.movieservice.advice.MovieNotFoundException;
-import adaguz.movieservice.advice.WrongInputDataException;
 import adaguz.movieservice.model.Movie;
 import adaguz.movieservice.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping()
@@ -28,7 +25,6 @@ public class MovieController {
         return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
 
-
     @GetMapping("/movies/{id}")
     public ResponseEntity<Movie> findById(@PathVariable Long id) {
         return ResponseEntity.ok(movieService.getMovieById(id));
@@ -37,6 +33,17 @@ public class MovieController {
     @PostMapping("/movies")
     public ResponseEntity<List <Movie>> addMovie(@RequestBody Movie movie){
         movieService.addMovie(movie);
+        return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
+    }
+
+    @PutMapping("/movies/{id}")
+    public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie, @PathVariable Long id){
+        return ResponseEntity.ok(movieService.updateMovie(movie, id));
+    }
+
+    @DeleteMapping("/movies/{id}")
+    public ResponseEntity<List<Movie>> deleteMovie(@PathVariable Long id){
+        movieService.deleteMovie(id);
         return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
 //
