@@ -2,14 +2,14 @@ package adaguz.movieservice.model;
 
 public class Movie {
 
-    private long id;
+    private Long id;
     private String name;
     private Category category;
-    private String countryOfProduction;
+    private CountryOfProduction countryOfProduction;
     private String direction;
     private int yearOfProduction;
 
-    public Movie(long id, String name, Category category, String countryOfProduction, String direction, int yearOfProduction) {
+    public Movie(Long id, String name, Category category, CountryOfProduction countryOfProduction, String direction, int yearOfProduction) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -18,7 +18,7 @@ public class Movie {
         this.yearOfProduction = yearOfProduction;
     }
 
-    public Movie(String name, Category category, String countryOfProduction, String direction, int yearOfProduction) {
+    public Movie(String name, Category category, CountryOfProduction countryOfProduction, String direction, int yearOfProduction) {
         this.name = name;
         this.category = category;
         this.countryOfProduction = countryOfProduction;
@@ -29,6 +29,7 @@ public class Movie {
     public Movie(){
 
     }
+
 
     public long getId() {
         return id;
@@ -54,11 +55,11 @@ public class Movie {
         this.category = category;
     }
 
-    public String getCountryOfProduction() {
+    public CountryOfProduction getCountryOfProduction() {
         return countryOfProduction;
     }
 
-    public void setCountryOfProduction(String countryOfProduction) {
+    public void setCountryOfProduction(CountryOfProduction countryOfProduction) {
         this.countryOfProduction = countryOfProduction;
     }
 
