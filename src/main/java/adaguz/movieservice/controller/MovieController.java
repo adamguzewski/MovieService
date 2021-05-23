@@ -5,6 +5,7 @@ import adaguz.movieservice.advice.WrongInputDataException;
 import adaguz.movieservice.model.Movie;
 import adaguz.movieservice.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,10 +28,11 @@ public class MovieController {
     }
 
     @GetMapping("/movies/{id}")
-    public ResponseEntity<Movie> getMovieByID(@PathVariable long id){
-        if (movieService.getMovieByID(id).getId() == id) {
-            return ResponseEntity.ok(movieService.getMovieByID(id));
-        } else throw new RuntimeException((new MovieNotFoundException(id)));
+    public ResponseEntity<Movie> getMovieByID(@PathVariable long id) throws MovieNotFoundException {
+        if (movieService.getMovieByID(id) == null) {
+            throw new RuntimeException(new MovieNotFoundException(id));
+        }
+        return ResponseEntity.ok(movieService.getMovieByID(id));
     }
 
     @PostMapping("/movies")
@@ -39,9 +41,21 @@ public class MovieController {
     }
 
     @PutMapping("/movies/{id}")
-    public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie, @PathVariable int id) throws WrongInputDataException {
+    public ResponseEntity<Movie> updateMovieById(@RequestBody Movie movie, @PathVariable long id) throws WrongInputDataException, MovieNotFoundException {
+        if (movieService.getMovieByID(id) == null) {
+            throw new RuntimeException(new MovieNotFoundException(id));
+        }
         if (movie.getId() == id) {
             return ResponseEntity.ok(movie);
         } else throw new RuntimeException(new WrongInputDataException(id));
+    }
+
+    @DeleteMapping("/movies/{id}")
+    public ResponseEntity<Void> deleteMovieById(@PathVariable long id) throws MovieNotFoundException{
+        if(movieService.getMovieByID(id) == null){
+            throw new RuntimeException(new MovieNotFoundException(id));
+        }
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+
     }
 }
