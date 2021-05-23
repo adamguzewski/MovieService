@@ -1,12 +1,26 @@
 package adaguz.movieservice.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Movie {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private Category category;
+
+    @Enumerated(EnumType.STRING)
+
+    @Column(name="countryofproduction")
     private CountryOfProduction countryOfProduction;
     private String direction;
+
+    @Column(name="yearofproduction")
     private int yearOfProduction;
 
     public Movie(Long id, String name, Category category, CountryOfProduction countryOfProduction, String direction, int yearOfProduction) {
@@ -29,7 +43,6 @@ public class Movie {
     public Movie(){
 
     }
-
 
     public long getId() {
         return id;
