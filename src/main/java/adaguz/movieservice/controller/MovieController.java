@@ -31,7 +31,6 @@ public class MovieController {
         if (movieService.getMovieByID(id).getId() == id) {
             return ResponseEntity.ok(movieService.getMovieByID(id));
         } else throw new RuntimeException((new MovieNotFoundException(id)));
-
     }
 
     @PostMapping("/movies")
