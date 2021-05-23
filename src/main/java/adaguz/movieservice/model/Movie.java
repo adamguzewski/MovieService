@@ -5,12 +5,20 @@ public class Movie {
     private long id;
     private String name;
     private Category category;
-    private CountryOfProduction countryOfProduction;
+    private String countryOfProduction;
     private String direction;
     private int yearOfProduction;
 
-    public Movie(long id, String name, Category category, CountryOfProduction countryOfProduction, String direction, int yearOfProduction) {
+    public Movie(long id, String name, Category category, String countryOfProduction, String direction, int yearOfProduction) {
         this.id = id;
+        this.name = name;
+        this.category = category;
+        this.countryOfProduction = countryOfProduction;
+        this.direction = direction;
+        this.yearOfProduction = yearOfProduction;
+    }
+
+    public Movie(String name, Category category, String countryOfProduction, String direction, int yearOfProduction) {
         this.name = name;
         this.category = category;
         this.countryOfProduction = countryOfProduction;
@@ -46,11 +54,11 @@ public class Movie {
         this.category = category;
     }
 
-    public CountryOfProduction getCountryOfProduction() {
+    public String getCountryOfProduction() {
         return countryOfProduction;
     }
 
-    public void setCountryOfProduction(CountryOfProduction countryOfProduction) {
+    public void setCountryOfProduction(String countryOfProduction) {
         this.countryOfProduction = countryOfProduction;
     }
 

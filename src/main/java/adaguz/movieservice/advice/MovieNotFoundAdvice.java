@@ -12,4 +12,10 @@ public class MovieNotFoundAdvice {
     public String movieNotFoundHandler(MovieNotFoundException exception) {
         return exception.getMessage();
     }
+
+    @ExceptionHandler(WrongInputDataException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String wrongInputDataHandler(WrongInputDataException exception){
+        return exception.getMessage();
+    }
 }
