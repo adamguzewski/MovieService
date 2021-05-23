@@ -51,11 +51,11 @@ public class MovieController {
     }
 
     @DeleteMapping("/movies/{id}")
-    public ResponseEntity<Void> deleteMovieById(@PathVariable long id) throws MovieNotFoundException{
-        if(movieService.getMovieByID(id) == null){
+    public ResponseEntity<Void> deleteMovieById(@PathVariable long id) throws MovieNotFoundException {
+        if (movieService.getMovieByID(id) == null) {
             throw new RuntimeException(new MovieNotFoundException(id));
         }
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
 }
