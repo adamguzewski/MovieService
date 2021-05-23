@@ -1,5 +1,5 @@
 package adaguz.movieservice.model;
 
 public enum Category {
-    Horror, Thriller, ScienceFiction, Drama, Comedy, Action
+    Horror, Thriller, ScienceFiction, Drama, Comedy, Action, Romance
 }

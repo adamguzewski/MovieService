@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping()
@@ -23,39 +24,43 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    public ResponseEntity<List<Movie>> allMovies() {
-        return ResponseEntity.ok(movieService.getAllMovies());
+    public ResponseEntity<List <Movie>> allMovies() {
+        return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
 
+
     @GetMapping("/movies/{id}")
-    public ResponseEntity<Movie> getMovieByID(@PathVariable long id) throws MovieNotFoundException {
-        if (movieService.getMovieByID(id) == null) {
-            throw new RuntimeException(new MovieNotFoundException(id));
-        }
-        return ResponseEntity.ok(movieService.getMovieByID(id));
+    public ResponseEntity<Movie> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(movieService.getMovieById(id));
     }
 
     @PostMapping("/movies")
-    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
-        return ResponseEntity.ok(movie);
+    public ResponseEntity<List <Movie>> addMovie(@RequestBody Movie movie){
+        movieService.addMovie(movie);
+        return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
-
-    @PutMapping("/movies/{id}")
-    public ResponseEntity<Movie> updateMovieById(@RequestBody Movie movie, @PathVariable long id) throws WrongInputDataException, MovieNotFoundException {
-        if (movieService.getMovieByID(id) == null) {
-            throw new RuntimeException(new MovieNotFoundException(id));
-        }
-        if (movie.getId() == id) {
-            return ResponseEntity.ok(movie);
-        } else throw new RuntimeException(new WrongInputDataException(id));
-    }
-
-    @DeleteMapping("/movies/{id}")
-    public ResponseEntity<Void> deleteMovieById(@PathVariable long id) throws MovieNotFoundException {
-        if (movieService.getMovieByID(id) == null) {
-            throw new RuntimeException(new MovieNotFoundException(id));
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-    }
+//
+//    @PostMapping("/movies")
+//    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
+//        return ResponseEntity.ok(movie);
+//    }
+//
+//    @PutMapping("/movies/{id}")
+//    public ResponseEntity<Movie> updateMovieById(@RequestBody Movie movie, @PathVariable long id) throws WrongInputDataException, MovieNotFoundException {
+//        if (movieService.getMovieByID(id) == null) {
+//            throw new RuntimeException(new MovieNotFoundException(id));
+//        }
+//        if (movie.getId() == id) {
+//            return ResponseEntity.ok(movie);
+//        } else throw new RuntimeException(new WrongInputDataException(id));
+//    }
+//
+//    @DeleteMapping("/movies/{id}")
+//    public ResponseEntity<Void> deleteMovieById(@PathVariable long id) throws MovieNotFoundException {
+//        if (movieService.getMovieByID(id) == null) {
+//            throw new RuntimeException(new MovieNotFoundException(id));
+//        }
+//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//
+//    }
 }

@@ -1,7 +1,9 @@
 package adaguz.movieservice.advice;
 
+import java.util.function.Supplier;
+
 public class MovieNotFoundException extends RuntimeException {
-    public MovieNotFoundException(long id){
-        super("Could not find movie with id: " + id);
+    public MovieNotFoundException(){
+        super("Could not find movie with id");
     }
 }

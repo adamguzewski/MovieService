@@ -1,33 +1,32 @@
 package adaguz.movieservice.service;
 
+import adaguz.movieservice.advice.MovieNotFoundAdvice;
+import adaguz.movieservice.advice.MovieNotFoundException;
+import adaguz.movieservice.model.Movie;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class MovieService {
     private final MovieRepository movieRepository;
 
+    public MovieService(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
+
+    public List <Movie> getAllMovies(){
+        return movieRepository.findAll();
+    }
+
+    public Movie getMovieById(Long id){
+        return movieRepository.findById(id).orElseThrow(MovieNotFoundException::new);
+    }
+
+    public Movie addMovie(Movie movie){
+        return movieRepository.save(movie);
+    }
+
+
 }
 
-
-//    Movie movie1 = new Movie(1L, "The Dark Knight Rises", Category.ScienceFiction,
-//            CountryOfProduction.USA, "Christopher Nolan", 2012);
-//    Movie movie2 = new Movie(2L, "Die Hard", Category.Action,
-//            CountryOfProduction.USA, "John McTiernan", 1988);
-//    Movie movie3 = new Movie(3L, "Die Hard 2", Category.Action,
-//            CountryOfProduction.USA, "John McTiernan", 1990);
-//    Movie movie4 = new Movie(4L, "Die Hard 3", Category.Action,
-//            CountryOfProduction.USA, "John McTiernan", 1995);
-//
-//
-//    public List<Movie> getAllMovies() {
-//        return List.of(movie1, movie2, movie3, movie4);
-//    }
-//
-//    public Movie getMovieByID(long id) {
-//        for (Movie movie : getAllMovies()) {
-//            if (movie.getId() == id) {
-//                return movie;
-//            }
-//        }
-//        return null;
-//    }

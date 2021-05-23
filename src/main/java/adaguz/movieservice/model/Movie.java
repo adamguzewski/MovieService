@@ -23,32 +23,24 @@ public class Movie {
     @Column(name="yearofproduction")
     private int yearOfProduction;
 
-    public Movie(Long id, String name, Category category, CountryOfProduction countryOfProduction, String direction, int yearOfProduction) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-        this.countryOfProduction = countryOfProduction;
-        this.direction = direction;
-        this.yearOfProduction = yearOfProduction;
-    }
+//    public Movie(String name, Category category, CountryOfProduction countryOfProduction, String direction, int yearOfProduction) {
+//        this.name = name;
+//        this.category = category;
+//        this.countryOfProduction = countryOfProduction;
+//        this.direction = direction;
+//        this.yearOfProduction = yearOfProduction;
+//    }
 
-    public Movie(String name, Category category, CountryOfProduction countryOfProduction, String direction, int yearOfProduction) {
-        this.name = name;
-        this.category = category;
-        this.countryOfProduction = countryOfProduction;
-        this.direction = direction;
-        this.yearOfProduction = yearOfProduction;
-    }
 
     public Movie(){
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
