@@ -46,6 +46,11 @@ public class MovieController {
         movieService.deleteMovie(id);
         return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
+
+    @PutMapping("/movies/update/{id}")
+    public void makeMovieTrue(@PathVariable Long id){
+        movieService.makeTrue(id);
+    }
 //
 //    @PostMapping("/movies")
 //    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {

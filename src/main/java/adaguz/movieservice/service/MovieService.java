@@ -38,6 +38,12 @@ public class MovieService {
         movieRepository.delete(movie);
     }
 
+    public void makeTrue(Long id){
+        Movie movie = movieRepository.findById(id).orElseThrow(MovieNotFoundException::new);
+        movie.setAvailable(true);
+        movieRepository.save(movie);
+    }
+
 
 }
 

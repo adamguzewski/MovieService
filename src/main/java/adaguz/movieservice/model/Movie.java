@@ -23,6 +23,9 @@ public class Movie {
     @Column(name="yearofproduction")
     private int yearOfProduction;
 
+    @Column(name="isavailable")
+    private boolean isAvailable;
+
 //    public Movie(String name, Category category, CountryOfProduction countryOfProduction, String direction, int yearOfProduction) {
 //        this.name = name;
 //        this.category = category;
@@ -34,6 +37,14 @@ public class Movie {
 
     public Movie(){
 
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 
     public Long getId() {
