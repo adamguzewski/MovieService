@@ -2,6 +2,7 @@ package adaguz.movieservice.service;
 
 import adaguz.movieservice.advice.MovieNotFoundException;
 import adaguz.movieservice.model.Movie;
+import adaguz.movieservice.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

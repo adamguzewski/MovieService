@@ -48,8 +48,9 @@ public class MovieController {
     }
 
     @PutMapping("/movies/update/{id}")
-    public void makeMovieTrue(@PathVariable Long id){
+    public ResponseEntity<Movie> makeMovieTrue(@PathVariable Long id){
         movieService.makeTrue(id);
+        return ResponseEntity.ok(movieService.getMovieById(id));
     }
 //
 //    @PostMapping("/movies")
