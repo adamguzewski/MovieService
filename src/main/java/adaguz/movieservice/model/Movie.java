@@ -26,13 +26,13 @@ public class Movie {
     @Column(name="isavailable")
     private boolean isAvailable;
 
-//    public Movie(String name, Category category, CountryOfProduction countryOfProduction, String direction, int yearOfProduction) {
-//        this.name = name;
-//        this.category = category;
-//        this.countryOfProduction = countryOfProduction;
-//        this.direction = direction;
-//        this.yearOfProduction = yearOfProduction;
-//    }
+    public Movie(String name, Category category, CountryOfProduction countryOfProduction, String direction, int yearOfProduction) {
+        this.name = name;
+        this.category = category;
+        this.countryOfProduction = countryOfProduction;
+        this.direction = direction;
+        this.yearOfProduction = yearOfProduction;
+    }
 
 
     public Movie(){

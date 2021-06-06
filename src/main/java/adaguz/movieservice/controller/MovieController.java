@@ -47,11 +47,18 @@ public class MovieController {
         return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
 
-    @PutMapping("/movies/update/{id}")
-    public ResponseEntity<Movie> makeMovieTrue(@PathVariable Long id){
-        movieService.makeTrue(id);
+    @PutMapping("/movies/returnmovie/{id}")
+    public ResponseEntity<Movie> returnMovie(@PathVariable Long id){
+        movieService.changeStatus(id);
         return ResponseEntity.ok(movieService.getMovieById(id));
     }
+
+    @PutMapping("/movies/rentmovie/{id}")
+    public ResponseEntity<Movie> rentMovie(@PathVariable Long id){
+        movieService.changeStatus(id);
+        return ResponseEntity.ok(movieService.getMovieById(id));
+    }
+
 //
 //    @PostMapping("/movies")
 //    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {

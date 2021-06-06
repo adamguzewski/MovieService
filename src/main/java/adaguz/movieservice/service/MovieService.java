@@ -39,9 +39,19 @@ public class MovieService {
         movieRepository.delete(movie);
     }
 
-    public void makeTrue(Long id){
+//    public void makeTrue(Long id){
+//        Movie movie = movieRepository.findById(id).orElseThrow(MovieNotFoundException::new);
+//        movie.setAvailable(true);
+//        movieRepository.save(movie);
+//    }
+
+    public void changeStatus(Long id){
         Movie movie = movieRepository.findById(id).orElseThrow(MovieNotFoundException::new);
-        movie.setAvailable(true);
+        if(movie.isAvailable()){
+            movie.setAvailable(false);
+        }else{
+            movie.setAvailable(true);
+        }
         movieRepository.save(movie);
     }
 
